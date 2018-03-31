@@ -36,6 +36,8 @@ document.onkeyup = function(event) {
 
   // IF letterToBeGuessed is the same as userGuess..
   if (userGuess === letterToBeGuessed) {
+    //Alert: You win!
+    alert("YOU WIN!");
     //Then add 1 to wins variable
     wins++;
     //Reset guessesLeft to 9
@@ -50,6 +52,8 @@ document.onkeyup = function(event) {
 
   // AlSO have the computer randomly pick a new letter for user to guess
   if (guessesLeft == 0) {
+    //Alert: You lose!
+    alert("YOU LOSE!");
     //Then add 1 to losses variable
     losses++;
     //Reset guessesLeft to 9
