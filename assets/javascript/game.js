@@ -2,72 +2,75 @@
 //var d = new Date();
 //document.body.innerHTML = ("<h1>Todays date is: " + d + "</h1>");
 
-// Define alphabet letters that computer can pick from
+// Define an array of alphabet letters that computer can choose from
 var computerOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-// Set the initial global variables
+// Set wins, losses, and guesses left variables
 var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
-// guessesSoFar is an array that will hold all the user's guesses in each round
+// Set array that will hold the user's guesses in each round of gameplay
 var guessesSoFar = [];
-// userGuess is what the user picks by pressing a key
+// Sets a variable for what the user picks by pressing a key
 var userGuess = null;
-// Have computer pick a letter and store it in letterToBeGuessed
+// Sets an array that has the computer randomly pick a letter and store it
 var letterToBeGuessed = computerOptions[Math.floor(Math.random) * computerOptions.length];
-// start listening for events
+// Listens for key stroke events
 document.onkeyup = function(event) {
 
 
 
 
-	// When user presses a key, it records it and saves to userGuess
-var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+  // When user presses a key, it records it and saves to userGuess variable
+  var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
 
-
-	// If the userGuess is not in the index of guessesSoFar
-  // AND userGuess is a letter of the alphabet,
+  // IF the userGuess is not in the index of guessesSoFar array
+  // AND userGuess is a letter of the alphabet(computerOptions array)
   //THEN add the userGuess to guessesSoFar array.
-
   if (guessesSoFar.indexOf(userGuess) < 0 && computerOptions.indexOf(userGuess) >= 0) {
     guessesSoFar[guessesSoFar.length] = userGuess;
 
-  // if it is a new letter then decrease remaining guesses by 1
+    // if it is a letter not yet guessed then decrease remaining guesses by 1
     guessesLeft--;
   }
 
-	// if letterToBeGuessed is same as userGuess then record it as a win
-	// and then reset guessesLeft to 9, and empty the guessesSoFar array
-	// also have the computer make a new random pick
-  if (letterToBeGuessed == userGuess){
+  // IF letterToBeGuessed is the same as userGuess..
+  if (letterToBeGuessed == userGuess) {
+    //Then add 1 to wins variable
     wins++;
-    console.log("You win!");
+    //Reset guessesLeft to 9
     guessesLeft = 9;
+    //And empty the guessesSoFar array
     guessesSoFar = [];
+    // ALSO have the computer randomly pick a new letter for the user to guess
     letterToBeGuessed = computerOptions[Math.floor(Math.random) * computerOptions.length];
   }
 
-	// if guessesLeft gets to 0 then record it as a loss
-	// and then reset guessesLeft to 9, and empty the guessesSoFar array
-	// also have the computer make a new random pick
+  // IF guessesLeft gets to 0..
+
+  // AlSO have the computer randomly pick a new letter for user to guess
   if (guessesLeft == 0) {
+    //Then add 1 to losses variable
     losses++;
+    //Reset guessesLeft to 9
     guessesLeft = 9;
+    //And empty the guessesSoFar array
     guessesSoFar = [];
+    //ALSO have the computer randomly pick a new letter for the user to guess
     lettertoBeGuessed = computerOptions[Math.floor(Math.random) * computerOptions.length];
   }
 
-	// Displaying progress to HTML
+  // Creating a variable to display the game progress to HTML
 
   var html =
-  "<h1>The Pyschic Game</h1><br>" +
-  "<h3>Guess what letter I'm thinking of</h3><br>" +
-  "<h3>Wins: " + wins + "</h3><br>" +
-  "<h3>Losses: " + losses + "</h3><br>" +
-  "<h3>Guesses Left: " + guessesLeft + "</h3><br>" +
-  "<h3>Your Guesses so far: " + guessesSoFar + "</h3><br>";
+    "<h1>The Pyschic Game</h1><br>" +
+    "<h3>Guess what letter I'm thinking of</h3><br>" +
+    "<h3>Wins: " + wins + "</h3><br>" +
+    "<h3>Losses: " + losses + "</h3><br>" +
+    "<h3>Guesses Left: " + guessesLeft + "</h3><br>" +
+    "<h3>Your Guesses so far: " + guessesSoFar + "</h3><br>";
 
 
-	// place html into the game ID
+  //Place html into the game ID Div
   document.querySelector("#game").innerHTML = html;
 }
