@@ -7,13 +7,13 @@ var computerOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l
 // Set wins, losses, and guesses left variables
 var wins = 0;
 var losses = 0;
-var guessesLeft = 9;
+var guessesLeft = 27;
 // Set array that will hold the user's guesses in each round of gameplay
 var guessesSoFar = [];
 // Sets a variable for what the user picks by pressing a key
 var userGuess = null;
 // Sets an array that has the computer randomly pick a letter and store it
-var letterToBeGuessed = computerOptions[Math.floor(Math.random) * computerOptions.length];
+var letterToBeGuessed = computerOptions[Math.floor(Math.random() * computerOptions.length)];
 // Listens for key stroke events
 document.onkeyup = function(event) {
 
@@ -35,11 +35,11 @@ document.onkeyup = function(event) {
   }
 
   // IF letterToBeGuessed is the same as userGuess..
-  if (letterToBeGuessed == userGuess) {
+  if (userGuess === letterToBeGuessed) {
     //Then add 1 to wins variable
     wins++;
     //Reset guessesLeft to 9
-    guessesLeft = 9;
+    guessesLeft = 27;
     //And empty the guessesSoFar array
     guessesSoFar = [];
     // ALSO have the computer randomly pick a new letter for the user to guess
@@ -53,7 +53,7 @@ document.onkeyup = function(event) {
     //Then add 1 to losses variable
     losses++;
     //Reset guessesLeft to 9
-    guessesLeft = 9;
+    guessesLeft = 27;
     //And empty the guessesSoFar array
     guessesSoFar = [];
     //ALSO have the computer randomly pick a new letter for the user to guess
